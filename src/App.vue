@@ -1,22 +1,24 @@
 <script setup lang="ts">
+import { onMounted } from 'vue';
 import HeaderItems from './components/HeaderItems.vue';
 import GalleryItems from './components/GalleryItems.vue';
+import SearchNoticeItems from './components/SearchNoticeItems.vue';
 import { useGalleryStore } from './stores/GalleryStore';
 import { useSearchStore } from './stores/SearchStore';
-import { useColorthemeStore } from './stores/ColorthemeStore';
-import { onMounted } from 'vue';
+import { useColorThemeStore } from './stores/ColorThemeStore';
 import Paginate from 'vuejs-paginate-next';
 
 const paginate = Paginate;
 
 const galleryStore = useGalleryStore();
 const searchStore = useSearchStore();
-const colorthemeStore = useColorthemeStore();
+const colorthemeStore = useColorThemeStore();
 
 onMounted(() => {
   galleryStore.getGallery();
   galleryStore.getAuthors();
   galleryStore.getLocations();
+  galleryStore.getPaintingCount();
 });
 </script>
 
@@ -35,26 +37,16 @@ onMounted(() => {
     </div>
   </div>
   <div class="gallery">
-    <GalleryItems
-      v-for="item in galleryStore.gallery"
-      :key="item.id"
-      :img="item.imageUrl"
-      :title="item.name"
-      :year="item.created"
-      :author="galleryStore.getAuthorById(item.authorId)"
-      :location="galleryStore.getLocationById(item.locationId)"
-    />
+    <GalleryItems v-if="!searchStore.filters.isEmpty" />
+    <SearchNoticeItems v-else :text="searchStore.filters.searchQuery" />
   </div>
   <div class="pagination-block">
     <paginate
       v-if="searchStore.filters.searchQuery.length === 0"
-      :page-count="6"
+      :page-count="galleryStore.getPageCount()"
       :click-handler="galleryStore.changePage"
       :prev-text="''"
       :next-text="''"
-      npm
-      run
-      build
       :container-class="'pagination'"
       :page-class="'page-item'"
       :page-link-class="'page-link'"

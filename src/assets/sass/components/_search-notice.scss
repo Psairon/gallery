@@ -1,0 +1,29 @@
+.search-notice-item {
+  @include media-mobile {
+    grid-column: span 6;
+  }
+  @include media-tablet {
+    grid-column: span 8;
+  }
+  @include media-laptop {
+    grid-column: span 12;
+  }
+  @include media-desktop {
+    grid-column: span 12;
+  }
+  &__header-container {
+    display: flex;
+    align-items: center;
+    justify-content: start;
+    @include font-paragraph-big(16px, 140%, 300);
+    color: var(--color-primary-text);
+  }
+  &__header-text {
+    @include font-paragraph-big(16px, 140%, 500);
+    margin-left: 4px;
+  }
+  &__text {
+    @include font-paragraph-base();
+    color: $color-secondary-gray;
+  }
+}

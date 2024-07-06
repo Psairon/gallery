@@ -1,15 +1,22 @@
 import { defineStore } from 'pinia';
-import { ref, onMounted } from 'vue';
+import { ref, onMounted, watch } from 'vue';
 
-export const useColorthemeStore = defineStore('colorthemeStore', () => {
+export const useColorThemeStore = defineStore('colorThemeStore', () => {
   const theme = ref(false);
   let root: HTMLElement | null = null;
 
   onMounted(() => {
     root = document.querySelector(':root') as HTMLElement;
+    const savedTheme = localStorage.getItem('theme');
+    if (savedTheme !== null) {
+      theme.value = JSON.parse(savedTheme);
+      if (theme.value) {
+        root.classList.add('white');
+      }
+    }
   });
 
-  const colortheme = () => {
+  const changeColorTheme = () => {
     if (root) {
       if (theme.value) {
         root.classList.remove('white');
@@ -20,5 +27,13 @@ export const useColorthemeStore = defineStore('colorthemeStore', () => {
     }
   };
 
-  return { theme, colortheme };
+  watch(
+    theme,
+    () => {
+      localStorage.setItem('theme', JSON.stringify(theme.value));
+    },
+    { deep: true }
+  );
+
+  return { theme, changeColorTheme };
 });

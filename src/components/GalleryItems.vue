@@ -1,13 +1,14 @@
 <script lang="ts" setup>
-import { defineProps } from 'vue';
+import { onMounted } from 'vue';
+import { useGalleryStore } from '../stores/GalleryStore';
 
-defineProps<{
-  img: string;
-  title: string;
-  year: string;
-  author: string;
-  location: string;
-}>();
+const galleryStore = useGalleryStore();
+
+onMounted(() => {
+  galleryStore.getGallery();
+  galleryStore.getAuthors();
+  galleryStore.getLocations();
+});
 
 const AnimationEffect = (event: Event, flag: boolean = false) => {
   const target = event.currentTarget as HTMLElement;
@@ -41,18 +42,20 @@ const AnimationEffect = (event: Event, flag: boolean = false) => {
 <template>
   <div
     class="gallery-item"
+    v-for="item in galleryStore.gallery"
+    :key="item.id"
     @mouseover="(event) => AnimationEffect(event, true)"
     @mouseleave="(event) => AnimationEffect(event)"
   >
-    <img :src="'https://test-front.framework.team' + img" alt="img" />
+    <img :src="'https://test-front.framework.team' + item.imageUrl" alt="img" />
     <div class="gallery-item__name">
       <div class="gallery-title-block-1" id="block1">
-        <h1 class="gallery-item__title">{{ title }}</h1>
-        <p class="gallery-item__year">{{ year }}</p>
+        <h1 class="gallery-item__title">{{ item.name }}</h1>
+        <p class="gallery-item__year">{{ item.created }}</p>
       </div>
       <div class="gallery-title-block-2" id="block2">
-        <h1 class="gallery-item__author">{{ author }}</h1>
-        <p class="gallery-item__location">{{ location }}</p>
+        <h1 class="gallery-item__author">{{ galleryStore.getAuthorById(item.authorId) }}</h1>
+        <p class="gallery-item__location">{{ galleryStore.getLocationById(item.locationId) }}</p>
       </div>
     </div>
   </div>

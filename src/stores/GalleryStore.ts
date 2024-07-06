@@ -1,4 +1,4 @@
-import { ref } from 'vue';
+import { ref, onMounted } from 'vue';
 import { defineStore } from 'pinia';
 import axios from 'axios';
 
@@ -25,6 +25,8 @@ export const useGalleryStore = defineStore('galleryStore', () => {
   const gallery = ref<Painting[]>([]);
   const authors = ref<Author[]>([]);
   const locations = ref<Location[]>([]);
+  const allPaintings = ref<number>(0);
+  const pageCount = ref<number>(0);
 
   const getGallery = async () => {
     try {
@@ -35,6 +37,19 @@ export const useGalleryStore = defineStore('galleryStore', () => {
     } catch (err) {
       console.error(err);
     }
+  };
+
+  const getPaintingCount = async () => {
+    try {
+      const { data } = await axios.get<Painting[]>('https://test-front.framework.team/paintings');
+      allPaintings.value = data.length;
+    } catch (err) {
+      console.error(err);
+    }
+  };
+
+  const getPageCount = () => {
+    return Math.ceil(allPaintings.value / 6);
   };
 
   const getAuthors = async () => {
@@ -80,13 +95,20 @@ export const useGalleryStore = defineStore('galleryStore', () => {
     newPage(page);
   };
 
+  onMounted(() => {
+    getGallery();
+  });
+
   return {
     gallery,
+    pageCount,
     getGallery,
     changePage,
     getAuthors,
     getAuthorById,
     getLocations,
-    getLocationById
+    getLocationById,
+    getPaintingCount,
+    getPageCount
   };
 });

@@ -7,8 +7,9 @@ import { useGalleryStore } from './GalleryStore';
 export const useSearchStore = defineStore('searchStore', () => {
   const galleryStore = useGalleryStore();
 
-  const filters = reactive<{ searchQuery: string }>({
-    searchQuery: ''
+  const filters = reactive<{ searchQuery: string; isEmpty: boolean }>({
+    searchQuery: '',
+    isEmpty: false
   });
 
   const onChangeSearchInput = debounce((event: Event) => {
@@ -22,10 +23,14 @@ export const useSearchStore = defineStore('searchStore', () => {
         const { data } = await axios.get(
           `https://test-front.framework.team/paintings?q=${filters.searchQuery}`
         );
-        console.log(data);
-        galleryStore.gallery = data;
+        if (data.length) {
+          galleryStore.gallery = data;
+        } else {
+          filters.isEmpty = true;
+        }
       } else {
         galleryStore.getGallery();
+        filters.isEmpty = false;
       }
     } catch (err) {
       console.log(err);
