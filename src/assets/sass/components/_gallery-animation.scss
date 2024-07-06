@@ -1,0 +1,105 @@
+.gallery-title-block-1 {
+  position: absolute;
+  top: 24%;
+}
+
+.gallery-title-block-2 {
+  position: absolute;
+  width: 250px;
+  overflow: hidden;
+  top: 25%;
+  left: -100%;
+}
+
+@keyframes move-right {
+  from {
+    left: -100%;
+  }
+  to {
+    left: 4%;
+  }
+}
+
+.transition-right {
+  position: absolute;
+  top: 25%;
+  animation-name: move-right;
+  animation-duration: 400ms;
+}
+
+@keyframes move-bottom {
+  from {
+    top: 25%;
+  }
+  to {
+    top: 200%;
+  }
+}
+
+.transition-bottom {
+  position: absolute;
+  top: 200%;
+  animation-name: move-bottom;
+  animation-duration: 400ms;
+}
+
+@keyframes move-left {
+  from {
+    left: 4%;
+  }
+  to {
+    left: -100%;
+  }
+}
+
+.transition-left {
+  position: absolute;
+  top: 25%;
+  animation-name: move-left;
+  animation-duration: 400ms;
+}
+
+@keyframes move-top {
+  from {
+    top: 200%;
+  }
+  to {
+    top: 25%;
+  }
+}
+
+.transition-top {
+  position: absolute;
+  animation-name: move-top;
+  animation-duration: 400ms;
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0.8;
+  }
+}
+
+.fade-in {
+  animation-name: fade-in;
+  animation-duration: 250ms;
+  animation-timing-function: ease-in-out;
+}
+
+@keyframes fade-in-strong {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0.5;
+  }
+}
+
+.fade-in-strong {
+  animation-name: fade-in-strong;
+  animation-duration: 250ms;
+  animation-timing-function: ease-in-out;
+}

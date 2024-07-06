@@ -1,0 +1,21 @@
+:root {
+  --color-primary: #{$color-primary-black}; //боди
+  --color-primary-gray: #{$color-primary-dark-gray}; //текст инпута
+  --color-secondary: #{$color-secondary-black}; //поле инпута  - фон
+  --color-secondary-gray: #{$color-secondary-black}; //поле инпута - рамка
+  --color-colortheme: #{$color-secondary-black}; //подсветка лого
+  --color-primary-text: #{$color-primary-light-gray}; //текст
+  --color-accent: #{$color-accent-dark-gold}; //цвет акцент
+  --color-pagination-arrows: #{$color-primary-light-gray};
+}
+
+.white {
+  --color-primary: #{$color-primary-white}; //боди
+  --color-primary-gray: #{$color-secondary-gray}; //текст инпута
+  --color-secondary: #{$color-secondary-white}; //поле инпута - фон
+  --color-secondary-gray: #{$color-primary-light-gray}; //поле инпута - рамка
+  --color-colortheme: rgba(18, 18, 18, 0.05); //подсветка лого
+  --color-primary-text: #{$color-primary-black}; //текст
+  --color-accent: #{$color-accent-red};
+  --color-pagination-arrows: #{$color-primary-dark-gray};
+}

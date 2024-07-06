@@ -1,0 +1,43 @@
+header {
+  max-width: $content-width;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  @include media-mobile {
+    margin: 12px 20px;
+  }
+  @include media-tablet {
+    margin: 24px 20px;
+  }
+  @include media-laptop {
+    margin: 20px 20px;
+  }
+  @include media-desktop {
+    margin: 20px auto;
+  }
+}
+
+.theme-btn {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  &:hover {
+    background-color: var(--color-colortheme);
+    transition: 100ms linear;
+  }
+}
+
+.logo {
+  @include media-mobile {
+    width: 73px;
+    height: 16px;
+  }
+  @include media-laptop {
+    width: 91px;
+    height: 20px;
+  }
+}

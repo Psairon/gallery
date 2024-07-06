@@ -1,0 +1,107 @@
+@mixin font-heading(
+  $font-size,
+  $line-height,
+  $font-weight: 500,
+  $font-family: 'Cormorant SC',
+  $letter-spacing: 0,
+  $font-style: normal,
+  $text-transform: uppercase
+) {
+  font-size: $font-size;
+  line-height: $line-height;
+  font-weight: $font-weight;
+  font-family: $font-family;
+  letter-spacing: $letter-spacing;
+  font-style: $font-style;
+  text-transform: $text-transform;
+}
+
+@mixin font-paragraph-big(
+  $font-size,
+  $line-height,
+  $font-weight,
+  $font-family: 'Inter',
+  $letter-spacing: 0,
+  $font-style: normal
+) {
+  font-size: $font-size;
+  line-height: $line-height;
+  font-weight: $font-weight;
+  font-family: $font-family;
+  letter-spacing: $letter-spacing;
+  font-style: $font-style;
+}
+
+@mixin font-paragraph-base(
+  $font-size: 14px,
+  $line-height: 140%,
+  $font-weight: 300,
+  $font-family: 'Inter',
+  $letter-spacing: 0,
+  $font-style: normal
+) {
+  font-size: $font-size;
+  line-height: $line-height;
+  font-weight: $font-weight;
+  font-family: $font-family;
+  letter-spacing: $letter-spacing;
+  font-style: $font-style;
+}
+
+@mixin font-paragraph-small(
+  $font-size: 12,
+  $line-height: 140%,
+  $font-weight: 300,
+  $font-family: 'Inter',
+  $letter-spacing: 0,
+  $font-style: normal
+) {
+  font-size: $font-size;
+  line-height: $line-height;
+  font-weight: $font-weight;
+  font-family: $font-family;
+  letter-spacing: $letter-spacing;
+  font-style: $font-style;
+}
+
+@mixin font-caption(
+  $font-size,
+  $line-height,
+  $font-weight: 700,
+  $font-family: 'Inter',
+  $letter-spacing: 0,
+  $font-style: normal,
+  $text-transform: uppercase
+) {
+  font-size: $font-size;
+  line-height: $line-height;
+  font-weight: $font-weight;
+  font-family: $font-family;
+  letter-spacing: $letter-spacing;
+  font-style: $font-style;
+  text-transform: $text-transform;
+}
+
+@mixin media-mobile {
+  @media (min-width: $mobile-width) {
+    @content;
+  }
+}
+
+@mixin media-tablet {
+  @media (min-width: $tablet-width) {
+    @content;
+  }
+}
+
+@mixin media-laptop {
+  @media (min-width: $laptop-width) {
+    @content;
+  }
+}
+
+@mixin media-desktop {
+  @media (min-width: $content-width) {
+    @content;
+  }
+}
